@@ -11,12 +11,13 @@ enum GameTitle {
     DIGDUG = 0,
     SKYKID,
     XEVIOUS,
+    STARLUSTER,
     END,
 };
 
 #ifdef WATCHY_SIM
 bool NTP_SYNC = true;
-int selectedGame = GameTitle::SKYKID;
+int selectedGame = GameTitle::STARLUSTER;
 #else
 RTC_DATA_ATTR bool NTP_SYNC = false;
 RTC_DATA_ATTR int selectedGame = GameTitle::DIGDUG;
@@ -39,6 +40,7 @@ void WatchyNamcoMuseum::drawPackage(const int& selectedGame)
 
 void WatchyNamcoMuseum::drawWatchFace(){
 #ifdef WATCHY_SIM
+    Sleep(5000);
     drawPackage(GameTitle::DIGDUG);
     digdug_drawWatchFace();
     Sleep(2000);
@@ -51,6 +53,9 @@ void WatchyNamcoMuseum::drawWatchFace(){
     xevious_drawWatchFace();
     Sleep(2000);
 
+    drawPackage(GameTitle::STARLUSTER);
+    starluster_drawWatchFace();
+    Sleep(2000);
 #else
     switch (selectedGame) {
     case GameTitle::DIGDUG:
@@ -61,6 +66,9 @@ void WatchyNamcoMuseum::drawWatchFace(){
         break;
     case GameTitle::XEVIOUS:
         xevious_drawWatchFace();
+        break;
+    case GameTitle::STARLUSTER:
+        starluster_drawWatchFace();
         break;
     default:
         break;
@@ -161,9 +169,12 @@ void WatchyNamcoMuseum::handleButtonPress() {
         }
         else if (guiState == WATCHFACE_STATE) {
             if(selectedGame == GameTitle::XEVIOUS){
-              xevious_push_down();
+                xevious_push_down();
             }
-            return;
+            else if (selectedGame == GameTitle::STARLUSTER) {
+                starluster_push_down();
+            }
+                return;
         }
     }
 

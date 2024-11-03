@@ -47,9 +47,6 @@ void WatchyNamcoMuseum::xevious_drawWatchFace(){
 #ifdef WATCHY_SIM
     XEVI_LANG = !XEVI_LANG;
     SHOT_ZAPPER = true;
-    Sleep(2000);
-    display.fillScreen(GxEPD_WHITE);
-    drawWatchFace();
 #endif 
 
 }

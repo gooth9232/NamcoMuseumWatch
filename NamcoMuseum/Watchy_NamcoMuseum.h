@@ -52,8 +52,22 @@ class WatchyNamcoMuseum : public Watchy{
 #ifndef WATCHY_SIM
         void xevious_push_up();
         void xevious_push_down();
-#endif        
+#endif
 
+        // StarLuster
+        void starluster_drawWatchFace();
+        void starluster_drawBackground();
+        int starluster_drawEnemy();
+        void starluster_drawTime();
+        void starluster_printSeg(int x, int y, int number);
+        void starluster_drawBattery();
+        void starluster_drawCondition();
+        void starluster_drawLazer();
+        void starluster_drawExplosion(const int& hitFlag);
+        void starluster_drawWarp();
+#ifndef WATCHY_SIM
+        void starluster_push_down();
+#endif
 };
 
 #endif
